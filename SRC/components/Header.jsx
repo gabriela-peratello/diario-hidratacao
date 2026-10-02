@@ -13,6 +13,9 @@ export default function Header({goal}){
     )
 }
 
+
+
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',

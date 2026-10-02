@@ -1,34 +1,86 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { COLORS } from "../constants/colors";
 
-export default function ActionButtons() {
-    const onPressFunction = () => {
-        console.log("testando");
-    };
+export default function ActionButtons({onAdd, onReset}) {
 
     return (
-        <View>
-            <Text>Adicionar Consumo:</Text>
 
-            <View>
-                <Pressable onPress={onPressFunction}> <Text>+200</Text>
+        <View style={styles.container}>
+
+            <Text style={styles.label}>Adicionar Consumo:</Text>
+
+            <View style={styles.buttonRow}>
+
+                {/* Adiciona 200ml */}
+                <Pressable style={styles.button} onPress={()=> onAdd(200)} > 
+                    <Text style={styles.buttonText}> + 200</Text>
                 </Pressable>
 
-                <Pressable onPress={onPressFunction}> <Text>+350</Text>
+                {/* Adiciona 350ml */}
+                <Pressable style={styles.button} onPress={()=> onAdd(350)}> 
+                    <Text style={styles.buttonText}>+ 350</Text>
                 </Pressable>
 
-                <Pressable onPress={onPressFunction}> <Text>+500</Text>
+                {/* Adiciona 500ml */}
+                <Pressable style={styles.button} onPress={()=> onAdd(500)}> 
+                    <Text style={styles.buttonText}>+500</Text>
                 </Pressable>
-
-
-                <View>
-                    <Pressable onPress={onPressFunction}> <Text>Reiniciar Dia</Text>
-                    </Pressable>
-                </View>
-
 
             </View>
+
+            <Pressable style={styles.resetButton} onPress={onReset}> 
+                <Text>Reiniciar Dia</Text>
+            </Pressable>
 
         </View>
     )
 }
+
+
+
+
+
+
+const styles = StyleSheet.create({
+    container: {
+        width: '100%',
+    },
+    label: {
+        fontSize: 14,
+        fontWeight: '600',
+        color: COLORS.textMain,
+        marginBottom: 12,
+    },
+    buttonRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        gap: 8,
+        marginBottom: 16,
+    },
+    button: {
+        flex: 1,
+        backgroundColor: COLORS.primary,
+        paddingVertical: 12,
+        borderRadius: 10,
+        alignItems: 'center',
+    },
+    buttonText: {
+        color: COLORS.white,
+        fontWeight: 'bold',
+        fontSize: 14,
+    },
+    resetButton: {
+        backgroundColor: COLORS.danger,
+        borderWidth: 1,
+        borderColor: COLORS.danger,
+        paddingVertical: 10,
+        borderRadius: 10,
+        alignItems: 'center',
+    },
+    resetButtonText: {
+        color: COLORS.cardBg,
+        fontWeight: '600',
+        fontSize: 13,
+    },
+});
+

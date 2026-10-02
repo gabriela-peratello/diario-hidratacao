@@ -1,14 +1,14 @@
 import { View, Text, StyleSheet } from "react-native";
 import { COLORS } from "../constants/colors";
 
-export default function WaterProgress({ wt_day, goal }) {
+export default function WaterProgress({ consumed, goal }) {
    
-    const percentage = (Math.min(wt_day / goal, 1) * 100).toFixed(0);
+    const percentage = (Math.min(consumed / goal) * 100).toFixed(0);
 
     return (
        
         <View style={styles.card}> 
-            <Text style={styles.consumedText}> {wt_day}ML</Text>
+            <Text style={styles.consumedText}> {consumed}ML</Text>
             <Text style={styles.percentageText}>{percentage}% da meta atingida</Text>
 
             
@@ -18,6 +18,9 @@ export default function WaterProgress({ wt_day, goal }) {
         </View>
     );
 }
+
+
+
 
 const styles = StyleSheet.create({
   card: {
