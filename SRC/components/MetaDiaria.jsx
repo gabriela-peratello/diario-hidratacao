@@ -1,52 +1,52 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { COLORS } from "../constants/colors";
 
-export default function ActionButtons({onAdd, onReset}) {
+
+export default function MetaDiaria({ onAdd, onSub, goal }) {
 
     return (
 
         <View style={styles.container}>
+            <Text> Ajustar Meta diária:</Text>
 
-            <Text style={styles.label}>Adicionar Consumo:</Text>
-
-            <View style={styles.buttonRow}>
-
-                {/* Adiciona 100ml */}
-                <Pressable style={styles.button} onPress={()=> onAdd(100)} > 
-                    <Text style={styles.buttonText}> + 100</Text>
+            <View>
+                {/* Subtrai 250 */}
+                <Pressable onPress={() => onSub(250)} >
+                    <Text> - 250</Text>
                 </Pressable>
 
-                {/* Adiciona 200ml */}
-                <Pressable style={styles.button} onPress={()=> onAdd(200)} > 
-                    <Text style={styles.buttonText}> + 200</Text>
+                <Text>{goal}ml</Text>
+
+                {/* Adiciona 250 */}
+                <Pressable onPress={() => onAdd(250)} >
+                    <Text> + 250</Text>
                 </Pressable>
 
-                {/* Adiciona 350ml */}
-                <Pressable style={styles.button} onPress={()=> onAdd(350)}> 
-                    <Text style={styles.buttonText}>+ 350</Text>
-                </Pressable>
 
-                {/* Adiciona 500ml */}
-                <Pressable style={styles.button} onPress={()=> onAdd(500)}> 
-                    <Text style={styles.buttonText}>+500</Text>
-                </Pressable>
 
             </View>
 
-            <Pressable style={styles.resetButton} onPress={onReset}> 
-                <Text>Reiniciar Dia</Text>
-            </Pressable>
-
         </View>
     )
+
 }
 
 
-
-
-
-
 const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        marginBottom: 24,
+    },
+    title: {
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: COLORS.textMain,
+    },
+    subtitle: {
+        fontSize: 14,
+        color: COLORS.textMuted,
+        marginTop: 4,
+    },
     container: {
         width: '100%',
     },
@@ -88,4 +88,3 @@ const styles = StyleSheet.create({
         fontSize: 13,
     },
 });
-

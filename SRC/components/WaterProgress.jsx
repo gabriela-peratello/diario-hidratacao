@@ -2,21 +2,22 @@ import { View, Text, StyleSheet } from "react-native";
 import { COLORS } from "../constants/colors";
 
 export default function WaterProgress({ consumed, goal }) {
-   
-    const percentage = (Math.min(consumed / goal) * 100).toFixed(0);
 
-    return (
-       
-        <View style={styles.card}> 
-            <Text style={styles.consumedText}> {consumed}ML</Text>
-            <Text style={styles.percentageText}>{percentage}% da meta atingida</Text>
+  const percentage = Math.min((consumed / goal) * 100, 100).toFixed(0);
 
-            
-            <View style={styles.progressBarBackground}>
-               <View style={[styles.progressBarFill, { width: `${percentage}%` }]} />
-            </View>
-        </View>
-    );
+  return (
+
+    <View style={styles.card}>
+      <Text style={styles.consumedText}> {consumed}ML</Text>
+      <Text style={styles.percentageText}>{percentage}% da meta atingida</Text>
+      <Text style={styles.percentageText}> Continue bebendo água para atingir a sua meta, faltam {goal}ml.</Text>
+
+
+      <View style={styles.progressBarBackground}>
+        <View style={[styles.progressBarFill, { width: `${percentage}%` }]} />
+      </View>
+    </View>
+  );
 }
 
 

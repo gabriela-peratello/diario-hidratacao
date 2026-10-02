@@ -1,22 +1,37 @@
 import { StatusBar, View, Text, StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { COLORS } from "./SRC/constants/colors";
+import { useState } from "react";
 import Header from "./SRC/components/Header";
 import WaterProgress from "./SRC/components/WaterProgress";
 import ActionButtons from "./SRC/components/ActionButtons";
-import { useState } from "react";
+import Mensagem from "./SRC/components/Mensagem";
+import MetaDiaria from "./SRC/components/MetaDiaria";
+
 
 
 
 export default function App() {
-  const GOAL = 2000;
-  const [consumed, setConsumed] =  useState(0);
 
-  // função para acumuklar a quantidade de agua ingerida
+  const [consumed, setConsumed] = useState(0);
+  const [meta, setMeta] = useState(500);
+
+  // função para acumular a quantidade de agua ingerida
   const handleAddWater = (ml) => {
     setConsumed((memoria) => memoria + ml);
   };
 
+  // somar na meta
+  const handleAddWaterMeta = (ml) => {
+    setMeta((memoria) => memoria + ml );
+  };
+
+  // tirar da meta
+  const handleSubWater = (ml) => {
+    setMeta((memoria) => (memoria - ml > 0 ? memoria - ml : 0)); 
+  };
+
+  // reinicia
   const handleReset = () => {
     setConsumed(0);
   };
@@ -30,9 +45,12 @@ export default function App() {
 
         <View style={styles.content}>
 
-          <Header goal={GOAL}/>
-          <WaterProgress consumed={consumed} goal={GOAL}/>
-          <ActionButtons onAdd={handleAddWater} onReset={handleReset}/>
+          <Header goal={meta} />
+          <MetaDiaria consumed={consumed} goal={meta} onAdd={handleAddWaterMeta} onSub={handleSubWater} />
+          <WaterProgress consumed={consumed} goal={meta} />
+          <ActionButtons onAdd={handleAddWater} onReset={handleReset} />
+          <Mensagem />
+
 
         </View>
 
